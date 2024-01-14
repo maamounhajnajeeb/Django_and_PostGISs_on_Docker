@@ -28,4 +28,4 @@ USER appuser
 
 EXPOSE 8000
 
-CMD ["python3", "API/waitress.py"]
+# CMD ["python3", "API/waitress.py"]
