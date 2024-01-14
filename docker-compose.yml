@@ -40,18 +40,3 @@ services:
 
 volumes:
   postgres-db:
-
-
-
-
-  # db: # this name must be the same in DB_HOST
-  #   container_name: db_app
-  #   image: postgis/postgis:16.3.4-alpine
-  #   restart: always
-  #   volumes:
-  #     - postgres-db:/var/lib/postgresql/data
-  #   environment:
-  #     POSTGRES_DB: devdb
-  #     POSTGRES_USER: Maamoun
-  #     POSTGRES_PASSWORD: sv_gtab101enter
-  

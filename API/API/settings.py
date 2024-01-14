@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#ty8yh%3833ik960ie+5o)t3+3mi!&j9=cbzwudpoh-$=brg2_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["sideproject.up.railway.app", os.environ.get("HOST")]
 
 
 # Application definition
@@ -81,13 +81,12 @@ WSGI_APPLICATION = 'API.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql',
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': os.environ.get("DB_NAME"),
         'USER': os.environ.get("DB_USER"),
         'PASSWORD': os.environ.get("DB_PASS"),
         'HOST': os.environ.get('DB_HOST'),
-        'PORT': 5432,
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
@@ -132,3 +131,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# deployment settings
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_SECONDS = 31536000 * 2 # 2 year
+SECURE_SSL_REDIRECT = True
+
+SECURE_REFERRER_POLICY = "strict-origin"
+
+# To support old browsers
+SECURE_BROWSER_XSS_FILTER = True
