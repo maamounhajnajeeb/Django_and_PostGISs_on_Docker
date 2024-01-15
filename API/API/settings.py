@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#ty8yh%3833ik960ie+5o)t3+3mi!&j9=cbzwudpoh-$=brg2_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["sideproject.up.railway.app", os.environ.get("RENDER_EXTERNAL_HOSTNAME")]
+ALLOWED_HOSTS = ["sideproject.up.railway.app", ".onrender.com", os.environ.get("RENDER_EXTERNAL_HOSTNAME")]
 
 
 # Application definition
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -122,7 +123,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -143,3 +143,13 @@ SECURE_REFERRER_POLICY = "strict-origin"
 
 # To support old browsers
 SECURE_BROWSER_XSS_FILTER = True
+
+
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}

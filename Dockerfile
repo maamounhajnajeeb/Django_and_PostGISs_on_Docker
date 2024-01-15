@@ -28,4 +28,4 @@ USER appuser
 
 EXPOSE 8000
 
-CMD ["python3", "API/server.py"]
+CMD ["gunicorn", "API/API.wsgi"]
