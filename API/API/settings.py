@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     
     # local apps
-    'API.first_app',
+    # 'API.first_app',
 ]
 
 MIDDLEWARE = [
