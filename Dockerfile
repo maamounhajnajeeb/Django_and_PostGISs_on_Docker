@@ -28,4 +28,4 @@ USER appuser
 
 EXPOSE 8000
 
-CMD ["gunicorn", "API/API.wsgi"]
+CMD ["gunicorn", "API.API.wsgi"]
