@@ -30,7 +30,6 @@ ALLOWED_HOSTS = ["sideproject.up.railway.app", ".onrender.com", os.environ.get("
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     
     # local apps
-    'API.first_app.apps.FirstAppConfig'
+    'first_app.apps.FirstAppConfig'
 ]
 
 MIDDLEWARE = [
