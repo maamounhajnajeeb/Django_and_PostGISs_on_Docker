@@ -17,9 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK
+@api_view(["GET", ])
+def hello(request):
+    return Response({"message": "hello, world!"}, status=HTTP_200_OK)
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     
+    path("hello/", hello, name="hello,world"),
     # first app urls
-    path("api/first_app/", include("first_app.urls")),
+    # path("api/first_app/", include("first_app.urls")),
 ]
