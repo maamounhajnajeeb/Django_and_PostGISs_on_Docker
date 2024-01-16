@@ -14,7 +14,7 @@ RUN pip install -r requirements.txt && \
 COPY . code
 WORKDIR /code
 
-RUN chmod +x /scripts/*
+# RUN chmod +x /scripts/*
 
 ARG UID=10001
 RUN adduser \
@@ -30,4 +30,5 @@ USER appuser
 
 EXPOSE 8000
 
-ENTRYPOINT ["scripts/entrypoint.sh"]
+# ENTRYPOINT ["scripts/entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "-c" , "python manage.py migrate && gunicorn --env DJANGO_SETTINGS_MODULE=API.settings -c python:config.gunicorn_config API.wsgi"]
