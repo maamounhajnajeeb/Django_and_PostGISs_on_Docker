@@ -4,9 +4,9 @@ services:
   web:
     container_name: django_app
     build: .
-    command: gunicorn --env DJANGO_SETTINGS_MODULE=API.API.settings API.API.wsgi
+    command: gunicorn --env DJANGO_SETTINGS_MODULE=API.settings -c python:config.gunicorn_config API.wsgi
     volumes:
-      - ./API:/code/API
+      - ./:/code
       # - ./API:/code/API:ro
     ports:
       - 8000:8000
@@ -17,6 +17,7 @@ services:
       - DB_PASS=sv_gtab101enter
       - SECRET_KEY=b43bed6bfeb44d4076e3b0ef5d9c10fb23279c71304eb4b180abe34b8bc60e69
       - DEBUG=True
+      - WEB_RELOAD=true
     depends_on:
       - db
   
@@ -33,12 +34,12 @@ services:
     ports:
       - 5432:5432
   
-  adminer:
-    image: adminer
-    container_name: adminer_app
-    restart: always
-    ports:
-      - 8080:8080
+  # adminer:
+  #   image: adminer
+  #   container_name: adminer_app
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
 
 volumes:
   postgres-db:

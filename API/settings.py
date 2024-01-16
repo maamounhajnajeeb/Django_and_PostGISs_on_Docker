@@ -20,10 +20,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = bool(os.environ.get("DEBUG", False))
 
 ALLOWED_HOSTS = [
-    ".onrender.com", "0.0.0.0", "127.0.0.1",
-    os.environ.get("RENDER_EXTERNAL_HOSTNAME", default="127.0.0.1")
+    ".onrender.com",
+    os.environ.get("RENDER_EXTERNAL_HOSTNAME", default="0.0.0.0")
 ]
-
 
 # Application definition
 INSTALLED_APPS = [
@@ -38,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.gis',
     
     # local apps
-    'API.API.first_app',
+    'first_app',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +51,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'API.API.urls'
+ROOT_URLCONF = 'API.urls'
+WSGI_APPLICATION = 'API.wsgi.application'
 
 TEMPLATES = [
     {
@@ -70,27 +70,26 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'API.API.wsgi.application'
 
 # for production
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default=os.environ.get("DataBase_URL")
-#         , conn_max_age=600
-#     )
-# }
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get("DataBase_URL")
+        , conn_max_age=600
+    )
+}
 
 # for development
-DATABASES = {
-    "default": {
-        "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "HOST": os.environ.get("DB_HOST"),
-        "NAME": os.environ.get("DB_NAME"),
-        "USER": os.environ.get("DB_USER"),
-        "PASSWORD": os.environ.get("DB_PASS"),
-        "PORT": os.environ.get("DB_PORT", 5432),
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.contrib.gis.db.backends.postgis",
+#         "HOST": os.environ.get("DB_HOST"),
+#         "NAME": os.environ.get("DB_NAME"),
+#         "USER": os.environ.get("DB_USER"),
+#         "PASSWORD": os.environ.get("DB_PASS"),
+#         "PORT": os.environ.get("DB_PORT", 5432),
+#     }
+# }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -118,18 +117,18 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # deployment settings #
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
-# SECURE_HSTS_PRELOAD = True
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_SECONDS = 31536000 * 2 # 2 year
-# SECURE_SSL_REDIRECT = True
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_SECONDS = 31536000 * 2 # 2 year
+SECURE_SSL_REDIRECT = True
 
-# SECURE_REFERRER_POLICY = "strict-origin"
+SECURE_REFERRER_POLICY = "strict-origin"
 
-# # To support old browsers
-# SECURE_BROWSER_XSS_FILTER = True
+# To support old browsers
+SECURE_BROWSER_XSS_FILTER = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'

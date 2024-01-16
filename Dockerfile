@@ -28,4 +28,4 @@ USER appuser
 
 EXPOSE 8000
 
-# CMD ["gunicorn", "--env", "DJANGO_SETTINGS_MODULE=API.API.settings", "API.API.wsgi"]
+CMD ["gunicorn", "--env", "DJANGO_SETTINGS_MODULE=API.settings", "-c", "python:config.gunicorn_config", "API.wsgi"]

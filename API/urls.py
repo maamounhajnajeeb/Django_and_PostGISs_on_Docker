@@ -32,3 +32,4 @@ urlpatterns = [
     # first app urls
     path("api/first_app/", include("first_app.urls")),
 ]
+
