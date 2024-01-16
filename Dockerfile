@@ -14,6 +14,8 @@ RUN pip install -r requirements.txt && \
 COPY . code
 WORKDIR /code
 
+RUN chmod +x /scripts/*
+
 ARG UID=10001
 RUN adduser \
     --disabled-password \
@@ -28,4 +30,4 @@ USER appuser
 
 EXPOSE 8000
 
-CMD ["gunicorn", "--env", "DJANGO_SETTINGS_MODULE=API.settings", "-c", "python:config.gunicorn_config", "API.wsgi"]
+ENTRYPOINT ["scripts/entrypoint.sh"]
