@@ -30,5 +30,5 @@ urlpatterns = [
     
     path("hello/", hello, name="hello,world"),
     # first app urls
-    # path("api/first_app/", include("first_app.urls")),
+    path("api/first_app/", include("first_app.urls")),
 ]

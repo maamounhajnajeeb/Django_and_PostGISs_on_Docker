@@ -4,7 +4,7 @@ services:
   web:
     container_name: django_app
     build: .
-    command: python API/manage.py runserver 0.0.0.0:8000
+    command: gunicorn --env DJANGO_SETTINGS_MODULE=API.API.settings API.API.wsgi
     volumes:
       - ./API:/code/API
       # - ./API:/code/API:ro
@@ -15,6 +15,8 @@ services:
       - DB_NAME=devdb
       - DB_USER=Maamoun
       - DB_PASS=sv_gtab101enter
+      - SECRET_KEY=b43bed6bfeb44d4076e3b0ef5d9c10fb23279c71304eb4b180abe34b8bc60e69
+      - DEBUG=True
     depends_on:
       - db
   
